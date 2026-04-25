@@ -23,9 +23,7 @@
     "type": "git",
     "url": "https://github.com/yourusername/rege-jean-page.git"
   },
-  "dependencies": {
-    "font-awesome": "^6.5.0"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "browserslist": [
     "last 2 versions",
