@@ -276,7 +276,7 @@ img {
   grid-template-columns: 1.4fr 0.8fr;
   background:
     linear-gradient(90deg, rgba(10,10,10,0.98), rgba(10,10,10,0.7), rgba(10,10,10,0.3)),
-    url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1400&q=80');
+    url('../assets/img/Rege-jean (1).jpg');
   background-size: cover;
   background-position: center;
   border-bottom: 1px solid rgba(212, 175, 106, 0.2);
