@@ -1,0 +1,35 @@
+{
+  "name": "rege-jean-page-management",
+  "version": "1.0.0",
+  "description": "Professional celebrity management website with premium fan experiences and event booking",
+  "type": "module",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000 --bind 127.0.0.1",
+    "build": "echo 'No build step required for this static site'",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": [
+    "celebrity",
+    "management",
+    "fan-engagement",
+    "luxury",
+    "event-booking"
+  ],
+  "author": "Portfolio Design",
+  "license": "Proprietary",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/rege-jean-page.git"
+  },
+  "dependencies": {
+    "font-awesome": "^6.5.0"
+  },
+  "devDependencies": {},
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ]
+}
