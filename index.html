@@ -47,9 +47,30 @@
     <main class="main">
       <header class="topbar">
         <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu"><i class="fa-solid fa-bars"></i></button>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <button class="search-btn" id="searchBtn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
         <a href="#membership" class="btn-outline btn"><i class="fa-solid fa-user"></i> Login / Register</a>
       </header>
+
+      <!-- Search Modal -->
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <button class="search-close" id="searchClose" aria-label="Close search">
+            <i class="fa-solid fa-times"></i>
+          </button>
+          <div class="search-modal-header">
+            <h2>Search</h2>
+            <p style="color: var(--gray); font-size: 0.9rem;">Find articles, events, and experiences</p>
+          </div>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Search for articles, events, membership benefits..."
+            autocomplete="off"
+          >
+          <div class="search-results" id="searchResults"></div>
+        </div>
+      </div>
 
       <section class="hero" id="home">
         <div class="hero-content">
@@ -239,10 +260,10 @@
               
               <form id="donationForm">
                 <div class="donation-amounts">
-                  <button type="button" class="amount-btn" data-amount="25">$25</button>
-                  <button type="button" class="amount-btn" data-amount="50">$50</button>
-                  <button type="button" class="amount-btn" data-amount="100">$100</button>
                   <button type="button" class="amount-btn" data-amount="250">$250</button>
+                  <button type="button" class="amount-btn" data-amount="500">$500</button>
+                  <button type="button" class="amount-btn" data-amount="1000">$1,000</button>
+                  <button type="button" class="amount-btn" data-amount="2500">$2,500</button>
                 </div>
                 
                 <input type="number" placeholder="Custom amount ($)" id="customAmount" min="1">
@@ -291,6 +312,139 @@
       </section>
 
       <section class="membership" id="membership">
+        <div class="membership-header">
+          <p class="eyebrow">VIP Experience</p>
+          <h2>Premium Membership</h2>
+          <p style="color: var(--gray); max-width: 850px;">Unlock exclusive access to Regé-Jean Page's inner circle with our comprehensive premium membership program.</p>
+        </div>
+
+        <div class="membership-card-container">
+          <div class="membership-card">
+            <div class="membership-price">
+              <span class="currency">$</span>
+              <span class="amount">1,500</span>
+              <span class="period">/year</span>
+            </div>
+            
+            <h3>Premium Fan Membership</h3>
+            <p class="membership-description">Exclusive annual membership for dedicated supporters</p>
+            
+            <ul class="membership-benefits">
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <span><strong>Signed Merchandise</strong> - Exclusive autographed items and collectibles</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <span><strong>Telegram Chat Access</strong> - Continuous community access with fellow members</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <span>Members-only updates and private content drops</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <span>Priority access to meet & greet events</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <span>Exclusive behind-the-scenes photos and videos</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <span>Special birthday and anniversary recognition</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <span>Early access to ticket sales and announcements</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <span>Official membership certificate and badge</span>
+              </li>
+            </ul>
+            
+            <button class="btn" style="width: 100%; margin-top: var(--spacing-lg);">Join Now</button>
+          </div>
+        </div>
+
+        <div class="meet-greet-section">
+          <div class="section-header">
+            <h2>Meet & Greet Experiences</h2>
+            <p style="color: var(--gray); margin-top: 0.5rem;">Exclusive in-person experiences with Regé-Jean Page</p>
+          </div>
+
+          <div class="meet-greet-container">
+            <div class="meet-greet-card">
+              <div class="card-label">Standard</div>
+              <div class="card-price">
+                <span class="currency">$</span>
+                <span class="amount">3,000</span>
+              </div>
+              
+              <h3>Regular Meet & Greet</h3>
+              <p class="card-subtitle">Group experience with fellow fans</p>
+              
+              <ul class="card-benefits">
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>20-minute group photo session</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Signed photo and merchandise</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Official event certificate</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Event commemorative item</span>
+                </li>
+              </ul>
+              
+              <button class="btn" style="width: 100%; margin-top: var(--spacing-lg);">Book Now</button>
+            </div>
+
+            <div class="meet-greet-card premium">
+              <div class="card-label premium-label">Premium</div>
+              <div class="card-price">
+                <span class="currency">$</span>
+                <span class="amount">15,000</span>
+              </div>
+              
+              <h3>VIP Meet & Greet</h3>
+              <p class="card-subtitle">Private exclusive experience</p>
+              
+              <ul class="card-benefits">
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>45-minute private session</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Professional photo shoot and prints</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Exclusive signed merchandise package</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Personalized thank you message and video</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>VIP event pass for future appearances</span>
+                </li>
+              </ul>
+              
+              <button class="btn" style="width: 100%; margin-top: var(--spacing-lg);">Book Now</button>
+            </div>
+          </div>
+        </div>
+
         <div class="membership-layout">
           <div>
             <p class="eyebrow">Keep up to date</p>
@@ -380,5 +534,6 @@
 
   <!-- JavaScript Modules -->
   <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/search-handler.js"></script>
 </body>
 </html>
