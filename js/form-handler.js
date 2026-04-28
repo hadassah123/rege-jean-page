@@ -7,6 +7,7 @@ export class FormHandler {
   constructor() {
     this.registrationForm = document.getElementById('registrationForm');
     this.contactForm = document.querySelector('.contact .membership-form form');
+    this.donationForm = document.getElementById('donationForm');
     this.newsletterForm = document.querySelector('.newsletter-box form') || this.createNewsletterForm();
     
     this.init();
@@ -18,6 +19,10 @@ export class FormHandler {
     }
     if (this.contactForm) {
       this.contactForm.addEventListener('submit', (e) => this.handleContact(e));
+    }
+    if (this.donationForm) {
+      this.donationForm.addEventListener('submit', (e) => this.handleDonation(e));
+      this.setupDonationAmountButtons();
     }
     if (this.newsletterForm) {
       this.newsletterForm.addEventListener('submit', (e) => this.handleNewsletter(e));
@@ -155,5 +160,85 @@ export class FormHandler {
 
     messageElement.textContent = message;
     messageElement.className = `form-message ${type === 'error' ? 'error' : ''}`;
+  }
+
+  setupDonationAmountButtons() {
+    const amountButtons = document.querySelectorAll('.amount-btn');
+    const customAmountInput = document.getElementById('customAmount');
+    
+    amountButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Remove active class from all buttons
+        amountButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Set custom amount field (optional - can be cleared if user wants)
+        const amount = button.getAttribute('data-amount');
+        // You could optionally set customAmountInput.value = amount here
+      });
+    });
+
+    // Clear button active state when custom amount is entered
+    customAmountInput.addEventListener('input', () => {
+      amountButtons.forEach(btn => btn.classList.remove('active'));
+    });
+  }
+
+  handleDonation(e) {
+    e.preventDefault();
+
+    const formInputs = e.target.querySelectorAll('input, textarea, select');
+    const name = formInputs[0]?.value;
+    const email = formInputs[1]?.value;
+    const phone = formInputs[2]?.value;
+    const purpose = formInputs[3]?.value;
+    const newsletter = e.target.querySelector('input[type="checkbox"]')?.checked;
+
+    // Get amount from active button or custom input
+    let amount;
+    const activeButton = e.target.querySelector('.amount-btn.active');
+    if (activeButton) {
+      amount = activeButton.getAttribute('data-amount');
+    } else {
+      const customAmount = document.getElementById('customAmount')?.value;
+      amount = customAmount || '0';
+    }
+
+    const formData = { name, email, phone, purpose, amount, newsletter };
+    
+    // Validate required fields
+    const errors = [];
+    if (!name || name.trim().length < 2) {
+      errors.push('Name must be at least 2 characters');
+    }
+    if (!email || !this.validateEmail(email)) {
+      errors.push('Please enter a valid email address');
+    }
+    if (amount === '0' || !amount) {
+      errors.push('Please select or enter a donation amount');
+    }
+    if (!purpose) {
+      errors.push('Please select a donation purpose');
+    }
+
+    const messageElement = document.getElementById('donationMessage');
+    if (errors.length > 0) {
+      this.showMessage(messageElement, errors.join(', '), 'error');
+      return;
+    }
+
+    // Success message
+    this.showMessage(messageElement, `Thank you for your generous donation of $${amount}! A confirmation email has been sent to ${email}. Together we're making a difference.`, 'success');
+    
+    // Reset form after success
+    setTimeout(() => {
+      e.target.reset();
+      document.querySelectorAll('.amount-btn').forEach(btn => btn.classList.remove('active'));
+      messageElement.textContent = '';
+    }, 4000);
   }
 }
